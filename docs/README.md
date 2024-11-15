@@ -1,0 +1,2 @@
+# Documentation about Feather's API
+This is not a complete documentation of their API - but it documents everything needed to create & use player servers without interfacing with the Feather Client application.
