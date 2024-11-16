@@ -40,6 +40,9 @@ func (c *FeatherProxyClient) Connect() error {
 			Client:               c,
 		}
 
+		// todo: this could be improved by connecting in parallel?
+		// the official client also does this but I'm not doing it
+		// here for simplicity reasons.. for now
 		err := connection.Connect()
 		if err != nil {
 			c.Logger.Printf("An error occured while connecting to communication host %s: %s", proxy.CommunicationHost, err.Error())

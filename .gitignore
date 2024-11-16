@@ -1,0 +1,6 @@
+.vscode
+config.json
+
+# binaries
+feather-proxy.exe
+feather-proxy
