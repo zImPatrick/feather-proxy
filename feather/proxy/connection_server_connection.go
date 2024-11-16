@@ -1,7 +1,6 @@
 package proxy
 
 import (
-	"fmt"
 	"net"
 )
 
@@ -22,7 +21,6 @@ func (c *ConnectionConnection) Connect(token []byte) error {
 		return err
 	}
 
-	fmt.Println("Giving connection to pendingConnections channel")
 	c.Client.pendingConnections <- &connection
 	return nil
 }

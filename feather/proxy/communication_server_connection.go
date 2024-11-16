@@ -3,7 +3,6 @@ package proxy
 import (
 	"bytes"
 	"fmt"
-	"log"
 	"net"
 	"time"
 )
@@ -66,7 +65,6 @@ func (c *CommunicationConnection) readPackets() error {
 
 		switch len(data) {
 		case 16: // is probably a join request
-			log.Println("Handling a join request")
 			conn := ConnectionConnection{
 				Host:   c.ConnectionServerHost,
 				Client: c.Client,
@@ -74,12 +72,10 @@ func (c *CommunicationConnection) readPackets() error {
 
 			err := conn.Connect(data)
 			if err != nil {
-				fmt.Printf("An error occured while connecting to the connection server: %s", err.Error())
+				c.Client.Logger.Printf("An error occured while connecting to the connection server: %s", err.Error())
 			}
-			break
 		default:
-			log.Printf("Unknown packet on communication connection with length %d: %x", len(data), data)
-			break
+			c.Client.Logger.Printf("Unknown packet on communication connection with length %d: %x", len(data), data)
 		}
 	}
 }
