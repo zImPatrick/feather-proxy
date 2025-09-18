@@ -4,7 +4,7 @@ The official Feather launcher lets you log in with your official microsoft accou
 tl;dr:
 1. `GET https://api.feathermc.com/v1/minecraft/server-id` - Gets a server id which the launcher sends to Mojang
 2. `POST https://sessionserver.mojang.com/session/minecraft/join`
-3. `GET https://api.feathermc.com/v1/minecraft/has-joined/versetzt?token=<server-id>`
+3. `GET https://api.feathermc.com/v1/minecraft/has-joined/<username>?token=<server-id>`
 4. `GET https://api.feathermc.com/v1/game/auth-token`
 
 This authentication flow gets you a token that can be used to communicate with all of Feather's services.
@@ -38,7 +38,7 @@ User-Agent: FeatherMC/Feather Client Launcher/1.6.1 (hello@feathermc.com)
 
 Mojang just returns a `204 No Content` response. [The normal flow for joining a server is more thoroughly documented on wiki.vg](https://wiki.vg/Protocol_Encryption#Authentication). It's very similar, except that we get the server id directly from Feather's api.
 
-## 3. `GET https://api.feathermc.com/v1/minecraft/has-joined/versetzt?token=<server-id>`
+## 3. `GET https://api.feathermc.com/v1/minecraft/has-joined/<username>?token=<server-id>`
 This is where Feather checks if you've sent a join request to Mojang.
 
 Example of a successful response:
@@ -52,7 +52,7 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyY2QxNGMxNS1h
   "email": null,
   "kind": "player",
   "mcID": "8cedd991-9ffa-466d-8b05-bbfb49c5505d", // Minecraft uuid
-  "mcUsername": "notactuallyme", // Minecraft username
+  "mcUsername": "<username>", // Minecraft username
   "firstName": null,
   "lastName": null,
   "registeredAt": "2024-15-11T11:16:36.444Z", // First feather registration
@@ -91,7 +91,7 @@ This JWT, when decoded, looks like this:
   "activatedAt": "2024-15-11T11:16:36.444Z",
   "kind": "player",
   "mcID": "8cedd991-9ffa-466d-8b05-bbfb49c5505d",
-  "mcUsername": "notactuallyme",
+  "mcUsername": "<username>",
   "ranks": [],
   "permissions": {
     "playerServerLimit": 3
